@@ -21,10 +21,15 @@ main {
   background-color: rgb(49, 35, 35);
 }
 #screen {
-  height: 8rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  height: 8.5rem;
   width: 16rem;
-  background-color: white;
-  border-radius: 0.25rem;
+  font-size: 1.25rem;
+
+  background-color: rgb(229, 229, 229);
+  border-radius: 1rem;
   margin: 0.5rem;
 }
 .btn-group {
@@ -37,11 +42,19 @@ main {
   height: 3.25rem;
   width: 3.25rem;
   margin: 0.25rem;
-  border-radius: 50%;
+  border-radius: 40%;
   background-color: white;
   border: 3px solid white;
 }
 .btn-operator {
   background-color: #ed9b39;
   border: 3px solid #ed9b39;
+}
+.btn:hover {
+  background-color: rgb(229, 229, 229);
+  border: 3px solid rgb(229, 229, 229);
+}
+.btn-operator:hover {
+  background-color: #ffb04f;
+  border: 3px solid #ffb04f;
 }
