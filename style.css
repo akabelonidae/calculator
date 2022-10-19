@@ -15,7 +15,7 @@ main {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  height: 25rem;
+  height: 29rem;
   width: 18rem;
   border-radius: 1rem;
 
@@ -29,16 +29,25 @@ main {
   width: 16rem;
   font-size: 1.5rem;
 
+  margin-top: 0.25rem;
   background-color: rgb(229, 229, 229);
   border-radius: 1rem;
   padding-right: 1rem;
 }
+
 .btn-group {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+}
+.upper-btn {
+  width: 6.5rem;
+  height: 3rem;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
+  background-color: #f45b69;
+  border: 3px solid #f45b69;
 }
 .btn {
   height: 3.25rem;
@@ -47,6 +56,13 @@ main {
   border-radius: 40%;
   background-color: white;
   border: 3px solid white;
+}
+.lower-btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
 .btn-operator {
   background-color: #ffb04f;
