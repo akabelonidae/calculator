@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  outline: none;
 }
 body {
   background-color: rgb(49, 133, 252, 0.75);
@@ -18,11 +19,10 @@ body {
   cursor: pointer;
   font-size: 2rem;
   border: 1px solid black;
-  outline: none;
-  background-color: rgba(255, 255, 255, 0.75);
+  background-color: rgba(255, 255, 255, 0.9);
 }
 .calculator-grid > button:hover {
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.75);
 }
 .double-span {
   grid-column: span 2;
@@ -40,11 +40,11 @@ body {
 }
 
 .output-screen .first-operand {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
 }
 
 .output-screen .second-operand {
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 2.5rem;
 }
