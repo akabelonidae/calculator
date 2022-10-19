@@ -2,39 +2,36 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Odin Calculator</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Calculator</title>
     <link rel="stylesheet" href="style.css" />
     <script src="script.js"></script>
   </head>
   <body>
-    <main>
-      <div id="screen"></div>
-      <div class="btn-group">
-        <div class="upper-btns">
-          <button class="upper-btn">Clear</button>
-          <button class="upper-btn">Delete</button>
-        </div>
-        <div class="lower-btns">
-          <button class="btn" data-number>7</button>
-          <button class="btn" data-number>8</button>
-          <button class="btn" data-number>9</button>
-          <button class="btn btn-operator" data-operation>÷</button>
-          <button class="btn" data-number>4</button>
-          <button class="btn" data-number>5</button>
-          <button class="btn" data-number>6</button>
-          <button class="btn btn-operator" data-operation>x</button>
-          <button class="btn" data-number>1</button>
-          <button class="btn" data-number>2</button>
-          <button class="btn" data-number>3</button>
-          <button class="btn btn-operator" data-operation>-</button>
-          <button class="btn" data-number>0</button>
-          <button class="btn" data-number>.</button>
-          <button class="btn" data-equals>=</button>
-          <button class="btn btn-operator" data-operation>+</button>
-        </div>
+    <div class="calculator-grid">
+      <div class="output-screen">
+        <div data-previous-operand class="first-operand">1337+</div>
+        <div data-current-operand class="second-operand">69</div>
       </div>
-    </main>
+      <button data-clear class="double-span">🗑️</button>
+      <button data-delete>DEL</button>
+      <button data-operation>÷</button>
+      <button data-number>1</button>
+      <button data-number>2</button>
+      <button data-number>3</button>
+      <button data-operation>*</button>
+      <button data-number>4</button>
+      <button data-number>5</button>
+      <button data-number>6</button>
+      <button data-operation>+</button>
+      <button data-number>7</button>
+      <button data-number>8</button>
+      <button data-number>9</button>
+      <button data-operation>-</button>
+      <button data-number>.</button>
+      <button data-number>0</button>
+      <button data-equals class="double-span">=</button>
+    </div>
   </body>
 </html>
