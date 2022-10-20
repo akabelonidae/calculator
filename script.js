@@ -7,8 +7,8 @@ let operatorSymbol;
 let calculationResult;
 const firstOperandScreen = document.getElementById('first-operand');
 const secondOperandScreen = document.getElementById('second-operand');
-const clearButton = document.querySelector('.clear-btn');
-const deleteButton = document.querySelector('.delete-btn');
+const clearButton = document.getElementById('clear-btn');
+const deleteButton = document.getElementById('delete-btn');
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.getElementById('equals-btn');
@@ -46,10 +46,26 @@ const evaluate = function () {
     case '÷':
       calculationResult = firstOperantToNumber / secondOperantToNumber;
   }
-  firstOperandScreen.textContent = `${firstOperand}${operatorSymbol}${secondOperand}`;
+  firstOperandScreen.textContent = `${firstOperand}${operatorSymbol}${secondOperand}=`;
   secondOperandScreen.textContent = calculationResult;
 };
+//
+// Clear function
+const clearAll = function () {
+  firstOperand = '';
+  secondOperand = '';
+  firstOperandScreen.textContent = '';
+  secondOperandScreen.textContent = '';
+  operatorSymbol = '';
+  calculationResult = '';
+};
 
+// Delete function
+const deleteNumber = function () {
+  secondOperandScreen.textContent = secondOperandScreen.textContent
+    .toString()
+    .slice(0, -1);
+};
 // Button event listeners
 numberButtons.forEach((btn) =>
   btn.addEventListener('click', () => {
@@ -63,10 +79,17 @@ operatorButtons.forEach((btn) =>
   })
 );
 
+const appendNumber = function (num) {
+  secondOperandScreen.textContent += num;
+};
 equalsButton.addEventListener('click', () => {
   evaluate();
 });
 
-const appendNumber = function (num) {
-  secondOperandScreen.textContent += num;
-};
+clearButton.addEventListener('click', () => {
+  clearAll();
+});
+
+deleteButton.addEventListener('click', () => {
+  deleteNumber();
+});
