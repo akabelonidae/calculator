@@ -5,6 +5,8 @@ let firstOperand = '';
 let secondOperand = '';
 let operatorSymbol;
 let calculationResult;
+let operationEvaluated = false;
+
 const firstOperandScreen = document.getElementById('first-operand');
 const secondOperandScreen = document.getElementById('second-operand');
 const clearButton = document.getElementById('clear-btn');
@@ -12,8 +14,14 @@ const deleteButton = document.getElementById('delete-btn');
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
 const equalsButton = document.getElementById('equals-btn');
+const pointButton = document.getElementById('point-button');
 
-// Operator function
+// Functions
+const appendNumber = function (num) {
+  if (calculationResult) return;
+  secondOperandScreen.textContent += num;
+};
+
 const clickOperatorButton = function (operator) {
   if (
     !firstOperandScreen.textContent == '' ||
@@ -27,8 +35,12 @@ const clickOperatorButton = function (operator) {
   operatorSymbol = operator;
 };
 
-// Evaluate function
 const evaluate = function () {
+  if (operatorSymbol == '÷' && secondOperand == 0) {
+    clearAll();
+    return alert(`You can't divide with 0!`);
+  } else if (calculationResult) return;
+
   secondOperand = secondOperandScreen.textContent;
   const firstOperantToNumber = Number(firstOperand);
   const secondOperantToNumber = Number(secondOperand);
@@ -46,11 +58,12 @@ const evaluate = function () {
     case '÷':
       calculationResult = firstOperantToNumber / secondOperantToNumber;
   }
+  operationEvaluated = true;
   firstOperandScreen.textContent = `${firstOperand}${operatorSymbol}${secondOperand}=`;
-  secondOperandScreen.textContent = calculationResult;
+
+  secondOperandScreen.textContent = calculationResult.toFixed(2);
 };
-//
-// Clear function
+
 const clearAll = function () {
   firstOperand = '';
   secondOperand = '';
@@ -58,14 +71,15 @@ const clearAll = function () {
   secondOperandScreen.textContent = '';
   operatorSymbol = '';
   calculationResult = '';
+  operationEvaluated = false;
 };
 
-// Delete function
 const deleteNumber = function () {
   secondOperandScreen.textContent = secondOperandScreen.textContent
     .toString()
     .slice(0, -1);
 };
+
 // Button event listeners
 numberButtons.forEach((btn) =>
   btn.addEventListener('click', () => {
@@ -79,9 +93,6 @@ operatorButtons.forEach((btn) =>
   })
 );
 
-const appendNumber = function (num) {
-  secondOperandScreen.textContent += num;
-};
 equalsButton.addEventListener('click', () => {
   evaluate();
 });
@@ -91,5 +102,10 @@ clearButton.addEventListener('click', () => {
 });
 
 deleteButton.addEventListener('click', () => {
+  if (operationEvaluated) clearAll();
   deleteNumber();
+});
+pointButton.addEventListener('click', () => {
+  if (secondOperandScreen.textContent.includes('.')) return;
+  secondOperandScreen.textContent += '.';
 });
