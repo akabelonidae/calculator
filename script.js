@@ -18,28 +18,26 @@ const pointButton = document.getElementById('point-button');
 
 // Functions
 const appendNumber = function (num) {
-  if (calculationResult) return;
   secondOperandScreen.textContent += num;
 };
 
 const clickOperatorButton = function (operator) {
-  if (
-    !firstOperandScreen.textContent == '' ||
-    secondOperandScreen.textContent == ''
-  )
-    return;
+  if (secondOperandScreen.textContent == '') return;
+  if (calculationResult) {
+    firstOperand = calculationResult;
+  }
 
   firstOperand = secondOperandScreen.textContent;
-  firstOperandScreen.textContent = `${secondOperandScreen.textContent}${operator}`;
+  firstOperandScreen.textContent = `${firstOperand}${operator}`;
   secondOperandScreen.textContent = '';
   operatorSymbol = operator;
 };
 
 const evaluate = function () {
-  if (operatorSymbol == '÷' && secondOperand == 0) {
+  if (operatorSymbol == '÷' && secondOperandScreen.textContent == 0) {
     clearAll();
     return alert(`You can't divide with 0!`);
-  } else if (calculationResult) return;
+  }
 
   secondOperand = secondOperandScreen.textContent;
   const firstOperantToNumber = Number(firstOperand);
@@ -61,7 +59,11 @@ const evaluate = function () {
   operationEvaluated = true;
   firstOperandScreen.textContent = `${firstOperand}${operatorSymbol}${secondOperand}=`;
 
-  secondOperandScreen.textContent = calculationResult.toFixed(2);
+  secondOperandScreen.textContent = calculationResult.toFixed(1);
+
+  if (secondOperandScreen.textContent.includes('.0')) {
+    secondOperandScreen.textContent = calculationResult.toFixed(0);
+  }
 };
 
 const clearAll = function () {
