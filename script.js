@@ -18,20 +18,20 @@ const equalsButton = document.getElementById('equals-btn');
 const pointButton = document.getElementById('point-button');
 
 // Functions
-const appendNumber = function (num) {
+function appendNumber(num) {
   secondOperandScreen.textContent += num;
-};
+}
 
-const clickOperatorButton = function (operator) {
+function clickOperatorButton(operator) {
   if (secondOperandScreen.textContent == '') return;
 
   firstOperand = secondOperandScreen.textContent;
   firstOperandScreen.textContent = `${firstOperand}${operator}`;
   secondOperandScreen.textContent = '';
   operatorSymbol = operator;
-};
+}
 
-const evaluate = function () {
+function evaluate() {
   if (operatorSymbol == '÷' && secondOperandScreen.textContent == 0) {
     clearAll();
     return alert(`You can't divide with 0!`);
@@ -50,7 +50,7 @@ const evaluate = function () {
     case '*':
       calculationResult = firstOperantToNumber * secondOperantToNumber;
       break;
-    case '÷':
+    case '/':
       calculationResult = firstOperantToNumber / secondOperantToNumber;
   }
   operationEvaluated = true;
@@ -61,9 +61,9 @@ const evaluate = function () {
   if (secondOperandScreen.textContent.includes('.0')) {
     secondOperandScreen.textContent = calculationResult.toFixed(0);
   }
-};
+}
 
-const clearAll = function () {
+function clearAll() {
   firstOperand = '';
   secondOperand = '';
   firstOperandScreen.textContent = '';
@@ -71,13 +71,16 @@ const clearAll = function () {
   operatorSymbol = '';
   calculationResult = '';
   operationEvaluated = false;
-};
-
-const deleteNumber = function () {
+}
+function deleteNumber() {
   secondOperandScreen.textContent = secondOperandScreen.textContent
     .toString()
     .slice(0, -1);
-};
+}
+function appendPointSymbol() {
+  if (secondOperandScreen.textContent.includes('.')) return;
+  secondOperandScreen.textContent += '.';
+}
 
 // Button event listeners
 numberButtons.forEach((btn) =>
@@ -104,7 +107,19 @@ deleteButton.addEventListener('click', () => {
   if (operationEvaluated) clearAll();
   deleteNumber();
 });
-pointButton.addEventListener('click', () => {
-  if (secondOperandScreen.textContent.includes('.')) return;
-  secondOperandScreen.textContent += '.';
-});
+pointButton.addEventListener('click', appendPointSymbol);
+
+// Keyboard functions
+function keyboardInput(e) {
+  if (e.key >= 0 && e.key <= 9) appendNumber(e.key);
+  if (e.key === 'Enter') evaluate();
+  if (e.key === 'Escape') clearAll();
+  if (e.key === 'Backspace') deleteNumber();
+  if (e.key === '.') appendPointSymbol();
+  if (e.key === '-') clickOperatorButton('-');
+  if (e.key === '+') clickOperatorButton('+');
+  if (e.key === '*') clickOperatorButton('*');
+  if (e.key === '/') clickOperatorButton('/');
+}
+
+window.addEventListener('keydown', keyboardInput);
