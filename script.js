@@ -1,3 +1,4 @@
+// Welcome to my spaghetti js! Sorry for this messy code :()
 'use strict';
 
 // Variables
@@ -23,9 +24,6 @@ const appendNumber = function (num) {
 
 const clickOperatorButton = function (operator) {
   if (secondOperandScreen.textContent == '') return;
-  if (calculationResult) {
-    firstOperand = calculationResult;
-  }
 
   firstOperand = secondOperandScreen.textContent;
   firstOperandScreen.textContent = `${firstOperand}${operator}`;
@@ -38,7 +36,6 @@ const evaluate = function () {
     clearAll();
     return alert(`You can't divide with 0!`);
   }
-
   secondOperand = secondOperandScreen.textContent;
   const firstOperantToNumber = Number(firstOperand);
   const secondOperantToNumber = Number(secondOperand);
@@ -59,7 +56,7 @@ const evaluate = function () {
   operationEvaluated = true;
   firstOperandScreen.textContent = `${firstOperand}${operatorSymbol}${secondOperand}=`;
 
-  secondOperandScreen.textContent = calculationResult.toFixed(1);
+  secondOperandScreen.textContent = calculationResult.toFixed(2);
 
   if (secondOperandScreen.textContent.includes('.0')) {
     secondOperandScreen.textContent = calculationResult.toFixed(0);
