@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   outline: none;
+  font-family: 'VT323', sans-serif;
 }
 body {
   background-color: rgb(49, 133, 252, 0.75);
@@ -17,7 +19,7 @@ body {
 }
 .calculator-grid > button {
   cursor: pointer;
-  font-size: 2rem;
+  font-size: 2.25rem;
   border: 1px solid black;
   background-color: rgba(255, 255, 255, 0.9);
 }
@@ -39,12 +41,12 @@ body {
   word-break: break-all;
 }
 
-.output-screen .first-operand {
+.output-screen #first-operand {
   color: rgba(255, 255, 255, 0.9);
   font-size: 1.5rem;
 }
 
-.output-screen .second-operand {
+.output-screen #second-operand {
   color: rgba(255, 255, 255, 0.9);
   font-size: 2.5rem;
 }

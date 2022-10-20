@@ -6,32 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css" />
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
   <body>
     <div class="calculator-grid">
       <div class="output-screen">
-        <div data-previous-operand class="first-operand">1337+</div>
-        <div data-current-operand class="second-operand">69</div>
+        <div id="first-operand"></div>
+        <div id="second-operand"></div>
       </div>
-      <button data-clear class="double-span">🗑️</button>
-      <button data-delete>DEL</button>
-      <button data-operation>÷</button>
+      <button id="clear-btn" class="double-span">🗑️</button>
+      <button id="delete-btn">DEL</button>
+      <button data-operator>/</button>
       <button data-number>1</button>
       <button data-number>2</button>
       <button data-number>3</button>
-      <button data-operation>*</button>
+      <button data-operator>*</button>
       <button data-number>4</button>
       <button data-number>5</button>
       <button data-number>6</button>
-      <button data-operation>+</button>
+      <button data-operator>+</button>
       <button data-number>7</button>
       <button data-number>8</button>
       <button data-number>9</button>
-      <button data-operation>-</button>
+      <button data-operator>-</button>
       <button data-number>.</button>
       <button data-number>0</button>
-      <button data-equals class="double-span">=</button>
+      <button id="equals-btn" class="double-span">=</button>
     </div>
   </body>
 </html>
