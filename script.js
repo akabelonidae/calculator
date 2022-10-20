@@ -32,7 +32,7 @@ function clickOperatorButton(operator) {
 }
 
 function evaluate() {
-  if (operatorSymbol == '÷' && secondOperandScreen.textContent == 0) {
+  if (operatorSymbol == '/' && secondOperandScreen.textContent == 0) {
     clearAll();
     return alert(`You can't divide with 0!`);
   }
