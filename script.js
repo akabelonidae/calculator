@@ -1,13 +1,8 @@
-// Welcome to my spaghetti js! Sorry for this messy code :()
 'use strict';
-
 // Variables
 let firstOperand = '';
 let secondOperand = '';
 let operatorSymbol;
-let calculationResult;
-let operationEvaluated = false;
-
 const firstOperandScreen = document.getElementById('first-operand');
 const secondOperandScreen = document.getElementById('second-operand');
 const clearButton = document.getElementById('clear-btn');
@@ -22,9 +17,8 @@ function appendNumber(num) {
   secondOperandScreen.textContent += num;
 }
 
-function clickOperatorButton(operator) {
+function setOperator(operator) {
   if (secondOperandScreen.textContent == '') return;
-
   firstOperand = secondOperandScreen.textContent;
   firstOperandScreen.textContent = `${firstOperand}${operator}`;
   secondOperandScreen.textContent = '';
@@ -39,6 +33,7 @@ function evaluate() {
   secondOperand = secondOperandScreen.textContent;
   const firstOperantToNumber = Number(firstOperand);
   const secondOperantToNumber = Number(secondOperand);
+  let calculationResult;
 
   switch (operatorSymbol) {
     case '+':
@@ -53,7 +48,6 @@ function evaluate() {
     case '/':
       calculationResult = firstOperantToNumber / secondOperantToNumber;
   }
-  operationEvaluated = true;
   firstOperandScreen.textContent = `${firstOperand}${operatorSymbol}${secondOperand}=`;
 
   secondOperandScreen.textContent = calculationResult.toFixed(2);
@@ -64,14 +58,10 @@ function evaluate() {
 }
 
 function clearAll() {
-  firstOperand = '';
-  secondOperand = '';
   firstOperandScreen.textContent = '';
   secondOperandScreen.textContent = '';
-  operatorSymbol = '';
-  calculationResult = '';
-  operationEvaluated = false;
 }
+
 function deleteNumber() {
   secondOperandScreen.textContent = secondOperandScreen.textContent
     .toString()
@@ -91,23 +81,15 @@ numberButtons.forEach((btn) =>
 
 operatorButtons.forEach((btn) =>
   btn.addEventListener('click', () => {
-    clickOperatorButton(btn.textContent);
+    setOperator(btn.textContent);
   })
 );
 
-equalsButton.addEventListener('click', () => {
-  evaluate();
-});
-
-clearButton.addEventListener('click', () => {
-  clearAll();
-});
-
-deleteButton.addEventListener('click', () => {
-  if (operationEvaluated) clearAll();
-  deleteNumber();
-});
+equalsButton.addEventListener('click', evaluate);
+clearButton.addEventListener('click', clearAll);
+deleteButton.addEventListener('click', deleteNumber);
 pointButton.addEventListener('click', appendPointSymbol);
+window.addEventListener('keydown', keyboardInput);
 
 // Keyboard functions
 function keyboardInput(e) {
@@ -116,10 +98,8 @@ function keyboardInput(e) {
   if (e.key === 'Escape') clearAll();
   if (e.key === 'Backspace') deleteNumber();
   if (e.key === '.') appendPointSymbol();
-  if (e.key === '-') clickOperatorButton('-');
-  if (e.key === '+') clickOperatorButton('+');
-  if (e.key === '*') clickOperatorButton('*');
-  if (e.key === '/') clickOperatorButton('/');
+  if (e.key === '-') setOperator('-');
+  if (e.key === '+') setOperator('+');
+  if (e.key === '*') setOperator('*');
+  if (e.key === '/') setOperator('/');
 }
-
-window.addEventListener('keydown', keyboardInput);
